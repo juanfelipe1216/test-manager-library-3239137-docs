@@ -10,7 +10,7 @@ Http: validación y adaptación al contrato.
 AppServiceProvider es el único punto de composición.
 
 ## Comprobaciones realizadas
-- 48 pruebas PHPUnit aprobadas, 210 aserciones: dominio, aplicación,
+- 52 pruebas PHPUnit aprobadas, 227 aserciones: dominio, aplicación,
   arquitectura, salud HTTP y restricciones reales de PostgreSQL.
   El total incluye dos pruebas de ejemplo del esqueleto Laravel.
 - Recorrido HTTP en api/backend/tests/smoke.php: login, autorización,
@@ -70,3 +70,16 @@ docker compose exec api php artisan library:credentials juancortes
 La contraseña se introduce de forma oculta y se almacena como hash en
 PostgreSQL y como configuración local en el .env ignorado.
 No se habilita esta operación mediante HTTP.
+
+## Corrección de filtros del catálogo
+Cada libro conserva su categoría mediante category_id. El catálogo activo
+tiene 26 ediciones de Novela y 6 de Historia; las otras tres categorías
+siguen disponibles al crear o editar libros, pero aparecen deshabilitadas
+con contador cero en el filtro de consulta.
+
+El texto se busca por título o autor, sin distinguir mayúsculas ni tildes,
+y se combina con la categoría. Los cambios reinician la paginación y
+cancelan solicitudes anteriores para evitar resultados fuera de orden.
+Cuatro pruebas de integración comprueban texto, categoría, paginación y
+conteos de libros activos. En navegador se verificó Historia con seis
+resultados, y Historia más «garcia» con dos. Compilación React aprobada.

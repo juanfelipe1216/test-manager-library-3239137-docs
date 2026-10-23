@@ -58,4 +58,4 @@ Pruebas de dominio, aplicación con fakes, integración con PostgreSQL,
 contrato HTTP, arquitectura y concurrencia.
 
 Una tarea se marcará terminada únicamente cuando tenga evidencia
-ejecutable. Por ahora, la implementación está pendiente.
+ejecutable. El estado real, las pruebas y las limitaciones se registran en estado-entrega.md.

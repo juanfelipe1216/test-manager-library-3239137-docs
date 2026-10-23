@@ -69,3 +69,8 @@ En cualquiera de las dos carpetas, en este orden:
 | [`test-manager-library-3239137-page`](https://github.com/code-sena/test-manager-library-3239137-page) | Sitio público estático de presentación |
 | [`test-manager-library-3239137-infra`](https://github.com/code-sena/test-manager-library-3239137-infra) | Contenedores, red, volúmenes y motor de base de datos vacío |
 | [`test-manager-library-3239137-tool`](https://github.com/code-sena/test-manager-library-3239137-tool) | Utilidades: sembrador de datos de demostración |
+
+## Implementación del aprendiz
+Ver estado-entrega.md para avances, evidencia y límites.
+Ver adr/ADR-005-laravel-concurrencia-reloj.md para la adaptación.
+Las versiones Python y .NET se conservan como referencia.

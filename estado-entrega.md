@@ -58,3 +58,15 @@ Smoke y concurrencia crean registros nuevos; no borran el historial.
 - Almacenamiento de portadas local y servidores de desarrollo para
   el entorno académico; no se entrega despliegue de producción.
 - No se afirma cobertura completa ni T-01 a T-23 terminadas.
+
+## Personalización posterior
+Se añadió el catálogo de 32 ediciones colombianas reales, con fuentes
+en tool/CATALOGO-FUENTES.md e importación por real-catalogue.mjs.
+Los libros ficticios se dan de baja y sus préstamos quedan conservados.
+Los socios y las cantidades continúan marcados como demostración.
+
+El administrador puede actualizarse desde la consola local:
+docker compose exec api php artisan library:credentials juancortes
+La contraseña se introduce de forma oculta y se almacena como hash en
+PostgreSQL y como configuración local en el .env ignorado.
+No se habilita esta operación mediante HTTP.

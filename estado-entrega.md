@@ -10,7 +10,7 @@ Http: validación y adaptación al contrato.
 AppServiceProvider es el único punto de composición.
 
 ## Comprobaciones realizadas
-- 52 pruebas PHPUnit aprobadas, 227 aserciones: dominio, aplicación,
+- 58 pruebas PHPUnit aprobadas, 260 aserciones: dominio, aplicación,
   arquitectura, salud HTTP y restricciones reales de PostgreSQL.
   El total incluye dos pruebas de ejemplo del esqueleto Laravel.
 - Recorrido HTTP en api/backend/tests/smoke.php: login, autorización,
@@ -83,3 +83,17 @@ cancelan solicitudes anteriores para evitar resultados fuera de orden.
 Cuatro pruebas de integración comprueban texto, categoría, paginación y
 conteos de libros activos. En navegador se verificó Historia con seis
 resultados, y Historia más «garcia» con dos. Compilación React aprobada.
+
+## Extensión solicitada: eliminar socios sin historial
+Por petición posterior del usuario se amplía CA-05.3, que originalmente
+indicaba que los socios no se eliminan. Solo el administrador puede usar
+DELETE /api/v1/members/{id}; un socio sin préstamos se elimina con 204.
+Si tiene cualquier préstamo registrado, abierto o devuelto, responde 409
+MEMBER_HAS_LOANS y conserva tanto el socio como todo su historial.
+El borrado comparte el bloqueo transaccional por socio con los préstamos.
+No se modifica el esquema ni se usa borrado en cascada.
+La interfaz pide confirmación, informa del resultado y ajusta la página
+cuando se elimina la última fila de un listado paginado.
+Seis pruebas de integración adicionales verifican borrado, repetición,
+permisos, UUID, socio inexistente e historial abierto y devuelto.
+La compilación de React y la suite completa de 58 pruebas pasaron.
